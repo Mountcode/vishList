@@ -555,8 +555,9 @@ strong {
   opacity: 0.8;
 }
 .button_d {
-  background: #efefef;
-  color: #282828;
+  background: #ddd;
+  color: #efefef;
+  pointer-events: none;
 }
 .button_d:hover {
   color: #fff;

@@ -555,8 +555,9 @@ strong {
   opacity: 0.8;
 }
 .button_d {
-  background: #efefef;
-  color: #282828;
+  background: #ddd;
+  color: #efefef;
+  pointer-events: none;
 }
 .button_d:hover {
   color: #fff;
@@ -834,24 +835,28 @@ textarea:focus {
 *[class*="_divider-mini"] {
   margin-bottom: 25px;
 }
-.QAblock {
+.qablock {
   padding-top: 50px;
 }
-.question-box {
-  padding: 25px;
-  background: #efefef;
-}
-.question-box__title {
+.qablock__title {
   font-size: 20px;
   font-weight: 600;
   margin-bottom: 50px;
   text-align: center;
+}
+.question-box {
+  padding: 25px;
+  background: #efefef;
+  min-height: 238px;
 }
 .history {
   width: 100%;
   min-height: 167px;
   background: #efefef;
   padding: 25px;
+}
+.history__list {
+  margin-bottom: 50px;
 }
 .history__link {
   margin-bottom: 10px;

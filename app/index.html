@@ -10,19 +10,26 @@
 </head>
 <body>
   <div class="container">
-    <div class="QAblock">
+    <div class="qablock">
       <h1 class="title_bord-divider">Что мне подарить?</h1>
         <div class="row row_simple">
           <div class="col_8 m-col_12">
-            <div class="question-box" data-qa="qa0">
-              <p class="question-box__title" >{{qaList[currentQa].qaTitle}}</p>
+            <div class="question-box">
+              <p class="qablock__title" >{{qaList[currentQa].qaTitle}}</p>
               <div class="answers-list">
                 <div class="row row_sa" v-if="qaList[currentQa].status != 'final'">
                   <div v-for="question in qaList[currentQa].ansList">
                     <span 
                     class="answer button button_r" 
                     :data-qa="question.qaLink"
-                    @click='getAnswer($event)'
+                    @click='getAnswer($event,"historyYes")'
+                    v-if="question.qaLink != 'qa_empty'"
+                    >
+                      {{question.ansTitle}}
+                    </span>
+                    <span 
+                    class="answer button button_d" 
+                    v-else
                     >
                       {{question.ansTitle}}
                     </span>
@@ -32,23 +39,40 @@
                   <div v-for="question in qaList[currentQa].ansList">
                     <span 
                     class="answer button button_b" 
-                    @click="$event.target.classList.toggle('active')">{{question.ansTitle}}</span>
+                    @click="$event.target.classList.toggle('active')">
+                    {{question.ansTitle}}
+                    </span>
                   </div>
                 </div>
               </div>
           </div>
         </div>
         <div class="col_4 m-col_12">
-          <ul class="history">
-            <li class="history__link" v-for="historyLink in history">{{historyLink.thisHistoryTitle}}</li>
-          </ul>
+          <div class="history">
+            <p class="qablock__title">История</p>
+            <ul class="history__list">
+              <li 
+              data-qa="qa0" 
+              class="history__link" 
+              @click='getAnswer($event,"historyNo")'>
+                Мне нужна одежда?
+              </li>
+              <li class="history__link" 
+              v-for="historyLink in history"
+              :data-qa="historyLink.thisHistoryTitle"
+              @click='getAnswer($event,"historyNo")'>
+              {{qaList[historyLink.thisHistoryTitle].qaTitle}}
+              </li>
+            </ul>
+            <span class="button button_r" @click="resetAll()">Сбросить всё</span>
+          </div>
         </div>
       </div>
     </div>
   </div>
 <script>
   new Vue({
-    el: '.QAblock',
+    el: '.qablock',
     data:{
       currentQa: 'qa0',
       finalAnswer: undefined,
@@ -63,7 +87,7 @@
             },
             var2:{
               ansTitle: 'Нет',
-              qaLink: 'qa2'
+              qaLink: 'qa4'
             }
           }
         },
@@ -77,7 +101,7 @@
             },
             var2:{
               ansTitle: 'Что-то мелкое',
-              qaLink: 'qa4'
+              qaLink: 'qa3'
             }
           }
         },
@@ -102,28 +126,199 @@
           },
           status: 'final'
         },
+        qa3:{
+          qaTitle: 'Что-то мелкое',
+          ansList: {
+            var1:{
+              ansTitle: 'Головной убор',
+            },
+            var2:{
+              ansTitle: 'Шарф',
+            },
+            var3:{
+              ansTitle: 'Перчатки',
+            },
+            var4:{
+              ansTitle: 'Носки',
+            },
+          },
+          status: 'final'
+        },
+        qa4:{
+          qaTitle: 'Аксессуары?',
+          ansList: {
+            var1:{
+              ansTitle: 'Украшения',
+              qaLink: 'qa_empty'
+            },
+            var2:{
+              ansTitle: 'Интерьер',
+              qaLink: 'qa6'
+            },
+            var3:{
+              ansTitle: 'Другое',
+              qaLink: 'qa5'
+            },
+            var4:{
+              ansTitle: 'Не аксессуары',
+              qaLink: 'qa7'
+            },
+          },
+        },
+        qa5:{
+          qaTitle: 'Другое',
+          ansList: {
+            var1:{
+              ansTitle: 'Чехол для телефона',
+            },
+            var2:{
+              ansTitle: 'Очки',
+            },
+          },
+          status: 'final'
+        },
+        qa6:{
+          qaTitle: 'Интерьер',
+          ansList: {
+            var1:{
+              ansTitle: 'Шторки',
+            },
+            var2:{
+              ansTitle: 'Свечи',
+            },
+            var3:{
+              ansTitle: 'Скатерть',
+            },
+            var4:{
+              ansTitle: 'Вонялки',
+            },
+            var5:{
+              ansTitle: 'Часы',
+            },
+            var6:{
+              ansTitle: 'Пылесборник на полку',
+            },
+            var7:{
+              ansTitle: 'Пылесборник на стену',
+            },
+            var8:{
+              ansTitle: 'Подушка',
+            },
+          },
+          status: 'final'
+        },
+        qa7:{
+          qaTitle: 'Что-то для ухода за собой?',
+          ansList: {
+            var1:{
+              ansTitle: 'Да',
+              qaLink: 'qa8'
+            },
+            var2:{
+              ansTitle: 'Не..',
+              qaLink: 'qa_empty'
+            },
+          },
+        },
+        qa8:{
+          qaTitle: 'Что из ухода за собой?',
+          ansList: {
+            var1:{
+              ansTitle: 'Тело',
+              qaLink: 'qa9'
+            },
+            var2:{
+              ansTitle: 'Волосы',
+              qaLink: 'qa11'
+            },
+            var3:{
+              ansTitle: 'Лицо',
+              qaLink: 'qa10'
+            },
+          },
+        },
+        qa9:{
+          qaTitle: 'Уход за телом',
+          ansList: {
+            var1:{
+              ansTitle: 'Пена/бомбочка для ванн',
+            },
+            var2:{
+              ansTitle: 'Полотенце',
+            },
+            var3:{
+              ansTitle: 'Лосьон/Крем/Масло для тела',
+            },
+            var4:{
+              ansTitle: 'Мочалка',
+            },
+            var5:{
+              ansTitle: 'Гель для душа',
+            },
+          },
+          status: 'final'
+        },
+        qa10:{
+          qaTitle: 'Уход за лицом',
+          ansList: {
+            var1:{
+              ansTitle: 'Уходовая косметика',
+              qaLink: 'qa_empty'
+            },
+            var2:{
+              ansTitle: 'Декоративная косметика',
+              qaLink: 'qa_empty'
+            },
+          },
+        },
+        qa11:{
+          qaTitle: 'Уход за волосами',
+          ansList: {
+            var1:{
+              ansTitle: 'Масло',
+            },
+            var2:{
+              ansTitle: 'Шампунь',
+            },
+            var3:{
+              ansTitle: 'Бальзам/Маска для волос',
+            },
+            var4:{
+              ansTitle: 'Краска (можно временную)',
+            },
+          },
+          status: 'final'
+        },
       }
     },
     methods:{
-      getAnswer(event){
+      getAnswer(event,historyAdd){
         var nextQa = event.target.getAttribute('data-qa');
-        if(nextQa != 'final'){
+        if(nextQa != 'qa_empty'){
           this.currentQa = nextQa;
+          if(historyAdd == 'historyYes'){
+            this.history.push({
+              thisHistoryTitle: this.currentQa,
+            });
+          }
+          else{
+            // TO DO 
+            // Удалять все элементы массива истории после выбранного
+            // for(let i = 0; i < this.history.length; i++){
+                
+            // }
+          }
         }
         else{
-          console.log('final');
+          alert('Эта ветка ещё не заполнена')
         } 
-        this.history.unshift({
-          thisHistoryTitle: this.currentQa,
-        });
+      },
+      resetAll(){
+        this.history = []
+        this.currentQa = 'qa0'
       },
     },
-    beforeMount: function(){
-      
-		},
-    watch: {
-      
-    }
+    
   })
 </script>
 </body>

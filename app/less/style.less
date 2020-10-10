@@ -39,12 +39,8 @@ textarea:focus {
     margin-bottom: @MS/2; 
 }
 
-.QAblock{
+.qablock{
     padding-top: @MS;
-}
-.question-box{
-    padding: @MS/2;
-    background: #efefef;
     &__title{
         font-size: 20px;
         font-weight: 600;
@@ -52,12 +48,20 @@ textarea:focus {
         text-align: center;
     }
 }
+.question-box{
+    padding: @MS/2;
+    background: #efefef;
+    min-height: 238px;
+}
 
 .history{
     width: 100%;
     min-height: 167px;
     background: #efefef;
     padding: @MS/2;
+    &__list{
+        margin-bottom: @MS;
+    }
     &__link{
         margin-bottom: 10px;
         font-weight: 500;
