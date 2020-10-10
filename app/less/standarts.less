@@ -1,0 +1,681 @@
+@import "variables.less";
+
+//RESET CSS
+html, body, div, span, applet, object, iframe,h1, h2, h3, h4, h5, h6, p, blockquote, pre,a, abbr, acronym, address, big, cite, code,del, dfn, em, img, ins, kbd, q, s, samp,small, strike, strong, sub, sup, tt, var,b, u, i, center,dl, dt, dd, ol, ul, li,fieldset, form, label, legend,table, caption, tbody, tfoot, thead, tr, th, td,article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary,time, mark, audio, video {margin: 0;padding: 0;border: 0;font-size: 100%;font: inherit;vertical-align: baseline;}/* HTML5 display-role reset for older browsers */article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {display: block;}body {line-height: 1;}ol, ul {list-style: none;}blockquote, q {quotes: none;}blockquote:before, blockquote:after,q:before, q:after {content: '';content: none;}table {border-collapse: collapse;border-spacing: 0;}a {outline: none!important; }select {font-size: 12px;position: relative;outline: none;padding: 8px;color: #8C8C8C;border: 1px solid #F0F0F0;background: #fff;-moz-box-box-shadow: inset 0 0 0 1px #fff, 1px 2px 0px #F0F0F0;-webkit-box-shadow: inset 0 0 0 1px #fff, 1px 2px 0px #F0F0F0;box-shadow: inset 0 0 0 1px #fff, 1px 2px 0px #F9F9F9;}select:hover{cursor: pointer;}
+
+//FONTS
+
+@font-face {
+    font-family: 'Open Sans';
+    src: local('Open Sans Light'), local('OpenSans-Light'), url('../fonts/opensans/opensanslight.woff2') format('woff2'), url('../fonts/opensans/opensanslight.woff') format('woff'), url('../fonts/opensans/opensanslight.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Open Sans';
+    src: local('Open Sans Light Italic'), local('OpenSansLight-Italic'), url('../fonts/opensans/opensanslightitalic.woff2') format('woff2'), url('../fonts/opensans/opensanslightitalic.woff') format('woff'), url('../fonts/opensans/opensanslightitalic.ttf') format('truetype');
+    font-weight: 300;
+    font-style: italic;
+}
+@font-face {
+    font-family: 'Open Sans';
+    src: local('Open Sans'), local('OpenSans'), url('../fonts/opensans/opensans.woff2') format('woff2'), url('../fonts/opensans/opensans.woff') format('woff'), url('../fonts/opensans/opensans.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Open Sans';
+    src: local('Open Sans Italic'), local('OpenSans-Italic'), url('../fonts/opensans/opensansitalic.woff2') format('woff2'), url('../fonts/opensans/opensansitalic.woff') format('woff'), url('../fonts/opensans/opensansitalic.ttf') format('truetype');
+    font-weight: 400;
+    font-style: italic;
+}
+@font-face {
+    font-family: 'Open Sans';
+    src: local('Open Sans Semibold'), local('OpenSans-Semibold'), url('../fonts/opensans/opensanssemibold.woff2') format('woff2'), url('../fonts/opensans/opensanssemibold.woff') format('woff'), url('../fonts/opensans/opensanssemibold.ttf') format('truetype');
+    font-weight: 600;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Open Sans';
+    src: local('Open Sans Semibold Italic'), local('OpenSans-SemiboldItalic'), url('../fonts/opensans/opensanssemibolditalic.woff2') format('woff2'), url('../fonts/opensans/opensanssemibolditalic.woff') format('woff'), url('../fonts/opensans/opensanssemibolditalic.ttf') format('truetype');
+    font-weight: 600;
+    font-style: italic;
+}
+@font-face {
+    font-family: 'Open Sans';
+    src: local('Open Sans Bold'), local('OpenSans-Bold'), url('../fonts/opensans/opensansbold.woff2') format('woff2'), url('../fonts/opensans/opensansbold.woff') format('woff'), url('../fonts/opensans/opensansbold.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Open Sans';
+    src: local('Open Sans Bold Italic'), local('OpenSans-BoldItalic'), url('../fonts/opensans/opensansbolditalic.woff2') format('woff2'), url('../fonts/opensans/opensansbolditalic.woff') format('woff'), url('../fonts/opensans/opensansbolditalic.ttf') format('truetype');
+    font-weight: 700;
+    font-style: italic;
+}
+@font-face {
+    font-family: 'Open Sans';
+    src: local('Open Sans Extrabold'), local('OpenSans-Extrabold'), url('../fonts/opensans/opensansextrabold.woff2') format('woff2'), url('../fonts/opensans/opensansextrabold.woff') format('woff'), url('../fonts/opensans/opensansextrabold.ttf') format('truetype');
+    font-weight: 800;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Open Sans';
+    src: local('Open Sans Extrabold Italic'), local('OpenSans-ExtraboldItalic'), url('../fonts/opensans/opensansextrabolditalic.woff2') format('woff2'), url('../fonts/opensans/opensansextrabolditalic.woff') format('woff'), url('../fonts/opensans/opensansextrabolditalic.ttf') format('truetype');
+    font-weight: 800;
+    font-style: italic;
+}
+
+
+
+@font-face {
+    font-family: 'Roboto Condensed';
+    src: local('Roboto Condensed Light'), local('RobotoCondensed-Light'), url('../fonts/robotocondensed/Robotocondensedlight.woff2') format('woff2'), url('../fonts/robotocondensed/Robotocondensedlight.woff') format('woff'), url('../fonts/robotocondensed/Robotocondensedlight.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Roboto Condensed';
+    src: local('Roboto Condensed Light Italic'), local('RobotoCondensed-LightItalic'), url('../fonts/robotocondensed/Robotocondensedlightitalic.woff2') format('woff2'), url('../fonts/robotocondensed/Robotocondensedlightitalic.woff') format('woff'), url('../fonts/robotocondensed/Robotocondensedlightitalic.ttf') format('truetype');
+    font-weight: 300;
+    font-style: italic;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Roboto Condensed';
+    src: local('Roboto Condensed'), local('RobotoCondensed-Regular'), url('../fonts/robotocondensed/Robotocondensed.woff2') format('woff2'), url('../fonts/robotocondensed/Robotocondensed.woff') format('woff'), url('../fonts/robotocondensed/Robotocondensed.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Roboto Condensed';
+    src: local('Roboto Condensed Italic'), local('RobotoCondensed-Italic'), url('../fonts/robotocondensed/Robotocondenseditalic.woff2') format('woff2'), url('../fonts/robotocondensed/Robotocondenseditalic.woff') format('woff'), url('../fonts/robotocondensed/Robotocondenseditalic.ttf') format('truetype');
+    font-weight: 400;
+    font-style: italic;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Roboto Condensed';
+    src: local('Roboto Condensed Bold'), local('RobotoCondensed-Bold'), url('../fonts/robotocondensed/Robotocondensedbold.woff2') format('woff2'), url('../fonts/robotocondensed/Robotocondensedbold.woff') format('woff'), url('../fonts/robotocondensed/Robotocondensedbold.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Roboto Condensed';
+    src: local('Roboto Condensed Bold Italic'), local('RobotoCondensed-BoldItalic'), url('../fonts/robotocondensed/Robotocondensedbolditalic.woff2') format('woff2'), url('../fonts/robotocondensed/Robotocondensedbolditalic.woff') format('woff'), url('../fonts/robotocondensed/Robotocondensedbolditalic.ttf') format('truetype');
+    font-weight: 700;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Caveat';
+    src: local('Caveat Regular'), local('Caveat-Regular'), url('../fonts/caveat/Caveatregular.woff2') format('woff2'), url('../fonts/caveat/Caveatregular.woff') format('woff'), url('../fonts/caveat/Caveatregular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Caveat';
+    src: local('Caveat Bold'), local('Caveat-Bold'), url('../fonts/caveat/Caveatbold.woff2') format('woff2'), url('../fonts/caveat/Caveatbold.woff') format('woff'), url('../fonts/caveat/Caveatbold.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+}
+
+.main_font {
+    font-family: 'Open Sans';
+    font-weight: 300;
+}
+
+.second_font{
+    font-family: 'Roboto Condensed';
+    font-weight: 300;
+}
+
+.text_standart { 
+    .main_font;
+    font-size: 15px;
+    line-height: 1.4;
+    letter-spacing: 0.04em;
+    color: @TC;
+    text-rendering: optimizeLegibility;
+}
+
+.txt-content{
+    font-size: 14px;
+    line-height: 1.8;
+    font-weight: 400;
+    letter-spacing: 0.04em;
+    text-rendering: optimizeLegibility;
+    color: @TC3;
+    p{
+        margin-bottom: @MS/2;
+    }
+    a{
+        color: @BC2;
+        text-decoration: underline;
+    }
+    ul{
+        margin-bottom: @MS/2;
+        li{
+            position: relative;
+            margin-bottom: 0.1rem;
+            padding-left: 25px;
+            &:before{
+                content: "— ";
+                position: absolute;
+                left: 0;
+                top: -1px;
+            }
+        }
+    }
+    table{
+        width: 100%;
+        margin-bottom: @MS/2;
+        tr{
+            td{
+                border: 1px solid #ddd;
+                padding: 6px;
+            }
+        }
+    }
+}
+
+//FLEX
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    &_sb {
+        justify-content: space-between;
+    }
+    &_sa {
+        justify-content: space-around;
+    }
+    &_center {
+        align-items: center;
+    }
+    &_bl {
+        align-items: baseline;
+    }
+    &_ct {
+        justify-content: center;
+    }
+    &_fe {
+        justify-content: flex-end;
+    }
+    &_fs {
+        justify-content: flex-start;
+    }
+    &_cl{
+        flex-direction: column;
+    }
+    &_fie{
+        align-items: flex-end;
+    }
+}
+
+//Grid
+
+// flex row
+.row_simple {
+    margin-right: -@GS;
+    margin-left: -@GS;
+}
+.row_column{
+    flex-direction: column;
+}
+div[class*="col_"]{
+    padding: 0 @GS;
+}
+@media screen and (max-width: 765px) {
+    div[class*="col_"]{
+        padding: 0 @GS/2;
+        
+    }
+    .row_simple {
+        margin-right: -@GS/2;
+        margin-left: -@GS/2;
+    }
+}
+.col_1{
+    width: 8.33333333%;
+}
+.col_2 {
+    width: 16.66666667%;
+}
+.col_3 {
+    width: 25%;
+}
+.col_4 {
+    width: 33.33333333%;
+}
+.col_5 {
+    width: 41.666667%;
+}
+.col_6 {
+    width: 50%;
+}
+.col_7 {
+    width: 58.33333333%;
+}
+.col_8 {
+    width: 66.66666667%;
+}
+.col_9 {
+    width: 75%;
+}
+.col_10{
+    width: 83.33333333%;
+} 
+.col_12 {
+    width: 100%;
+}
+.col_15 {
+    width: 20%;
+}
+.self-center{
+    align-self: center;
+}
+
+///////////////////////// MAIN HTML ELEMENTS /////////////////////////
+body,html {
+    .text_standart;
+    background-color: #fafafa;
+    background-position: left top;
+    background-size: auto;
+    background-repeat: repeat;
+    background-attachment: fixed;
+    position: relative;
+}
+
+mark{
+    background: none;
+}
+
+//HEADERS
+h1 {
+    font-size: 2rem;
+    line-height: 1.4;
+    text-transform: uppercase;
+    font-weight: 400;
+    &.title_mini{
+        font-size: 1.5rem;
+    }
+}
+ 
+h2 {  
+    font-size: 1.3rem;
+    line-height: 1.3;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+h3 {
+    font-size: 1rem;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+h1,h2,h3{
+    color: @TC;
+    text-align: center;
+    &.title_center{
+        text-align: center;
+    }
+}
+
+.container {
+    width: 1290px;
+    margin: 0 auto;
+    position: relative;
+}
+
+figure{
+    margin-bottom: @MS;
+}
+
+a {
+    text-decoration: none;
+    color: @LC;
+    transition: .3s;
+    &:hover {
+        opacity: .7;
+    }
+}
+
+strong{ 
+    font-weight: 600;
+}
+
+////////////////////////// FORMS and BUTTONS //////////////////////////
+.form-control {
+    input[type='text'],
+    input[type='password'],
+    input[type='email'],
+    input[type='phone'],
+    input[type='number'],
+    textarea,
+    select{
+        .text_standart;
+        font-size: 15px;
+        width: 100%;
+        padding: 12px 12px;
+        border: 1px solid #444;
+        transition: 0.3s;
+        margin-bottom: @GS;
+        color: @TC;
+        background: #f7fbfb;
+        .borad;
+        &:focus {
+            outline: none;
+            background: #f0f7f8;
+            border-color: #f7fbfb;
+        }
+    }
+    input[type='text'],
+    input[type='password'],
+    input[type='email'],
+    input[type='phone'],
+    input[type='number'],
+    select{
+        height: 40px;
+    }
+    .form-header{
+        font-size: 1rem;
+        font-weight: 600;
+    }
+}
+::-webkit-input-placeholder {color:@PHC;}
+::-moz-placeholder          {color:@PHC;}
+:-moz-placeholder           {color:@PHC;}
+:-ms-input-placeholder      {color:@PHC;}
+
+.testyou{
+    display: none;
+}
+// BUTTONS
+
+.button{
+    display: inline-block;
+    cursor: pointer;
+    display: inline-block;
+    letter-spacing: 0.04em;
+    padding: 12px 20px;
+    line-height: 1;
+    position: relative;
+    text-transform: uppercase;
+    font-weight: 400;
+    font-size: 1em;
+    text-align: center;
+    transition: .3s;
+    border: none;
+    .borad;
+    &:hover{
+        opacity: 1;
+    }
+    &_r{
+        background: @BC1;
+        color: #fff;
+        &:hover{
+            opacity: 0.8;
+        }
+    }
+    &_d{
+        background: #efefef;
+        color: @TC;
+        &:hover{
+            color: #fff;
+            background: @BC1;
+        }
+    }
+    &_block{
+        background: #efefef;
+        color: @TC;
+        pointer-events: none;
+        cursor: times;
+    }
+    &_b{
+        background: #0077cc;
+        color: #fff;
+        text-align: center;
+        border: 1px solid #ddd;
+        &:hover{
+            opacity: 0.8;
+        }
+        &.active{
+            font-size: 30px;
+            font-weight: 600;
+            
+        }
+    }
+    &_remove{
+        padding: 10px 10px 10px;
+        line-height: 1;
+        position: relative;
+        bottom: 3px;
+    }
+    &_ct{
+        margin: 0 auto;
+        display: block;
+    }
+    &_narrow{
+        max-width: 200px;
+    }
+    &_wide{
+        width: 100%;
+    }
+    &_mb{
+        margin-bottom: @MS/2;
+    }
+    &_mt{
+        margin-top: @MS/2;
+    }
+}
+
+
+
+// select style
+.select-style{
+    overflow: hidden;
+    display: block;
+    .borad;
+    position: relative;
+    margin-bottom: @GS;
+    line-height: 1;
+    &_no-margin{
+        margin-bottom: 0;
+        select{
+            margin-bottom: 0;
+        }
+    }
+    select{
+        position: relative;
+        z-index: 30;
+        min-width: 100px;
+        padding: 8px 13px;
+        width: 100%;
+        margin-bottom: 0;
+    }
+    &:before{
+        content: "";
+        position: absolute;
+        height: 40px;
+        width: 30px;
+        background: #444;
+        right: 0;
+        top: 0;
+        display: block;
+        z-index: 50;
+        border-radius: 0 3px 3px 0; 
+        pointer-events: none;
+        cursor: pointer;
+    }
+    &:after{
+        font-family: FontAwesome;
+        content: "\f107";
+        height: 40px;
+        width: 30px;
+        position: absolute;
+        right: 0;
+        line-height: 32px;
+        pointer-events: none;
+        color: #fff;
+        text-align: center;
+        opacity: 1;
+        line-height: 40px;
+        z-index: 60;
+        pointer-events: none;
+        cursor: pointer;
+    }
+    &__title{
+        font-weight: 600;
+        margin-bottom: 10px;
+    }
+}
+
+// checkbox style
+// label>input+div[text]
+.checkbox{
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    align-items: center;
+    input {
+        position: absolute;
+        z-index: -1;
+        opacity: 0;
+        display: none;
+        margin: 10px 0 0 20px;
+    }
+    .checkbox__text {
+        position: relative;
+        padding: 0 0 0 35px;
+        cursor: pointer;
+        line-height: 24px;
+        padding-bottom: 2px;
+        a{
+            font-weight: 500;
+            text-decoration: underline;
+            color: #444;
+        }
+        &:before{
+            content: '';
+            position: absolute;
+            top: 3px;
+            left: 0;
+            width: 18px;
+            height: 18px;
+            border: 1px solid #444;
+            transition: .2s;
+        }
+        &:after{
+            content: '';
+            position: absolute;
+            top: 6px;
+            left: 3px;
+            width: 12px;
+            height: 12px;
+            background: #444;
+            transition: .2s;
+            opacity: 0;
+        }
+    }
+    input:checked + .checkbox__text:before {
+        opacity: 1;
+    }
+    input:checked + .checkbox__text:after {
+        opacity: 1;
+    }
+}
+
+/////////////////////////// PLUGINS STYLES ///////////////////////////
+.owl_style{
+    overflow: hidden;
+    position: relative;
+    .owl-item{
+        display: inline-block;
+    }
+    .owl-dots{
+        position: absolute;
+        bottom: 20px;
+        left: 0;
+        right: 0;
+        margin: 0 auto;
+        z-index: 60;
+        width: 100%;
+        &.disabled{
+            display: none;
+        }
+        text-align: center;
+        .owl-dot{
+            display: inline-block;
+            margin: 0 6px;
+            background: none;
+            border-radius: 0px;
+            border: none;
+            span{
+                display: block;
+                height: 12px;
+                width: 12px;
+                background: #816f6b;
+                border-radius: 40px;
+                cursor: pointer;
+                transition:0.5s;
+            }
+            &.active,&:hover{
+                span{
+                    background: @BC1;
+                    box-shadow: 1px 1px 10px fade(@BC1,70%);
+                }
+            }
+        }
+    }
+    .owl-nav{
+        position: absolute;
+        width: 100%;
+        top: 50%;
+        left: 0;
+        &.disabled{
+            display: none;
+        }
+        .owl-prev, .owl-next{
+            position: absolute;
+            display: block;
+            height: 35px;
+            width: 35px;
+            cursor: pointer;
+            transition: 0.3s;
+            border: 1px solid #fff;
+            border-radius: 100px;
+            color: #fff;
+            background: none;
+            text-align: center;
+            &:hover{
+                cursor: pointer;
+                opacity: 1;
+                color: #fff;
+            }
+            &:before{
+                font-family: FontAwesome;
+            }
+        } 
+        .owl-prev{
+            left: 3%;
+            &:before{
+                content: '\f104'
+            }
+        }
+        .owl-next{
+            right: 3%;
+            &:before{
+                content: '\f105'
+            }
+        }
+    }
+}
+.fancybox-container{
+    z-index: 600!important;
+}

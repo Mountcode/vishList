@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Что мне подарить?</title>
+  <link rel="stylesheet" href="css/style.min.css">
+  <script src="js/vue.js"></script>
+  <script src="js/main.js"></script>
+</head>
+<body>
+  <div class="container">
+    <div class="QAblock">
+      <h1 class="title_bord-divider">Что мне подарить?</h1>
+        <div class="row row_simple">
+          <div class="col_8 m-col_12">
+            <div class="question-box" data-qa="qa0">
+              <p class="question-box__title" >{{qaList[currentQa].qaTitle}}</p>
+              <div class="answers-list">
+                <div class="row row_sa" v-if="qaList[currentQa].status != 'final'">
+                  <div v-for="question in qaList[currentQa].ansList">
+                    <span 
+                    class="answer button button_r" 
+                    :data-qa="question.qaLink"
+                    @click='getAnswer($event)'
+                    >
+                      {{question.ansTitle}}
+                    </span>
+                  </div>
+                </div>
+                <div class="row row_ct" v-else>
+                  <div v-for="question in qaList[currentQa].ansList">
+                    <span 
+                    class="answer button button_b" 
+                    @click="$event.target.classList.toggle('active')">{{question.ansTitle}}</span>
+                  </div>
+                </div>
+              </div>
+          </div>
+        </div>
+        <div class="col_4 m-col_12">
+          <ul class="history">
+            <li class="history__link" v-for="historyLink in history">{{historyLink.thisHistoryTitle}}</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+<script>
+  new Vue({
+    el: '.QAblock',
+    data:{
+      currentQa: 'qa0',
+      finalAnswer: undefined,
+      history: [],
+      qaList:{
+        qa0:{
+          qaTitle: 'Мне нужна одежда?',
+          ansList: {
+            var1:{
+              ansTitle: 'Да',
+              qaLink: 'qa1'
+            },
+            var2:{
+              ansTitle: 'Нет',
+              qaLink: 'qa2'
+            }
+          }
+        },
+        qa1:{
+          qaTitle: 'Что например?',
+          ansList: {
+            var1:{
+              ansTitle: 'Что-то серьезное',
+              qaLink: 'qa2'
+
+            },
+            var2:{
+              ansTitle: 'Что-то мелкое',
+              qaLink: 'qa4'
+            }
+          }
+        },
+        qa2:{
+          qaTitle: 'Что-то серьезное',
+          ansList: {
+            var1:{
+              ansTitle: 'Кофта/Толстовка',
+            },
+            var2:{
+              ansTitle: 'Специализированная одежда',
+            },
+            var3:{
+              ansTitle: 'Верхняя одежда',
+            },
+            var4:{
+              ansTitle: 'Платье',
+            },
+            var5:{
+              ansTitle: 'Обувь',
+            },
+          },
+          status: 'final'
+        },
+      }
+    },
+    methods:{
+      getAnswer(event){
+        var nextQa = event.target.getAttribute('data-qa');
+        if(nextQa != 'final'){
+          this.currentQa = nextQa;
+        }
+        else{
+          console.log('final');
+        } 
+        this.history.unshift({
+          thisHistoryTitle: this.currentQa,
+        });
+      },
+    },
+    beforeMount: function(){
+      
+		},
+    watch: {
+      
+    }
+  })
+</script>
+</body>
+</html>
